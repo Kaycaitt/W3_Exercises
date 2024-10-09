@@ -18,15 +18,17 @@ ORDER BY UnitsInStock desc, ProductName ASC;
 /*Question 4: Write a query against the orders table that displays the total number of distinct
 customers who have placed orders, by customer ID*/ 
 #need to come back to question#
-SELECT DISTINCT CustomerID FROM northwind.orders
-ORDER BY CustomerID;
+SELECT DISTINCT CustomerID, COUNT(CustomerID) AS 'Number of Orders per ID' FROM northwind.orders
+WHERE OrderDate IS NOT NULL
+GROUP BY CustomerID;
 
 /*Question 5: Write a query against the orders table that displays the total number of distinct
 customers who have placed orders, by customer ID, for each country where orders
 have been shipped*/
 #need to come back to question#
-SELECT DISTINCT CustomerID, ShipName FROM orders
-ORDER BY CustomerID;
+SELECT DISTINCT CustomerID, ShipCountry, COUNT(CustomerID) AS 'Number of Orders per ID' FROM northwind.orders
+WHERE OrderDate IS NOT NULL
+GROUP BY CustomerID, ShipCountry;
 
 /*Question 6: What are the products that we carry where we have no units on hand, but 1 or more
 units of them are on backorder? Order them by product name*/
